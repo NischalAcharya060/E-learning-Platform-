@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="filter.aspx" />
     <Content Include="lesson.aspx" />
     <Content Include="progress.aspx" />
     <Content Include="Web.config" />
@@ -76,6 +77,13 @@
     <Content Include="instructor.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="filter.aspx.cs">
+      <DependentUpon>filter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="filter.aspx.designer.cs">
+      <DependentUpon>filter.aspx</DependentUpon>
+    </Compile>
     <Compile Include="lesson.aspx.cs">
       <DependentUpon>lesson.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

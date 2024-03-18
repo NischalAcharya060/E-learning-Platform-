@@ -1,10 +1,10 @@
-﻿﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="dashboard.aspx.cs" Inherits="E_learning.dashboard" %>
+﻿﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="filter.aspx.cs" Inherits="E_learning.filter" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>E - Learning | Admin Dashboard</title>
+    <title>E - Learning | Filter</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <style>
     body {
@@ -79,6 +79,33 @@
         margin: 0;
         font-size: 24px;
     }
+        footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+/* Style the footer content */
+.footer-content {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+/* Style the copyright text */
+.footer-content p {
+    margin: 0;
+}
+
+/* Style the footer links (if any) */
+.footer-content a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-content a:hover {
+    text-decoration: underline;
+}
 </style>
 </head>
 <body>
@@ -97,22 +124,11 @@
 
         </div>
             <div id="navbar">
-    <h1 class="navbar-title">Dashboard</h1>
+    <h1 class="navbar-title">Filter</h1>
 </div>
-        <div class="container">
-            <div class="card">
-                <h2>Total Students</h2>
-                <p>
-                    15
-                </p>
-            </div>
-            <div class="card">
-                <h2>Total Course</h2>
-                <p>
-                    15
-                </p>
-            </div>
-        </div>
+        <asp:GridView ID="GridView1" runat="server" Height="391px" style="margin-left: 329px; margin-top: 57px" Width="783px">
+        </asp:GridView>
     </form>
+            
 </body>
 </html>

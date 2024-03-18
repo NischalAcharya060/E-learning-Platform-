@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>E - Learning | Lesson Details</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-xaVsRZex2+AT+JMbfyMTPtAh6Ksh5DkjHB1C1WlzA/bcxta/9wQOllvIXGss8f1Nt2W9o/+JZs0xG+nlKUsN2Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
             <style>
     body {
         font-family: Arial, sans-serif;
@@ -46,22 +46,67 @@
         flex-wrap: wrap;
         justify-content: flex-start;
     }
+    #navbar {
+        background-color: #444;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .navbar-title {
+        margin: 0;
+        font-size: 24px;
+    }
+    footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+/* Style the footer content */
+.footer-content {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+/* Style the copyright text */
+.footer-content p {
+    margin: 0;
+}
+
+/* Style the footer links (if any) */
+.footer-content a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-content a:hover {
+    text-decoration: underline;
+}
 </style>
 </head>
 <body>
     <form id="form1" runat="server">
                <div id="sidebar">
     <header>
-    <h1> E-Learning</h1>
+    <h2><i class="fas fa-graduation-cap"></i> E-Learning</h2>
     </header>
-    <a href="dashboard.aspx">Dashboard</a>
-    <a href="student.aspx">Student</a>
-    <a href="course.aspx">Course</a>
-    <a href="instructor.aspx">Instructor</a>
-    <a href="lesson.aspx">Lesson</a>
-    <a href="progress.aspx">Progress</a>
+    <a href="dashboard.aspx"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+<a href="student.aspx"><i class="fas fa-user-graduate"></i> Student</a>
+<a href="course.aspx"><i class="fas fa-book"></i> Course</a>
+<a href="instructor.aspx"><i class="fas fa-chalkboard-teacher"></i> Instructor</a>
+<a href="lesson.aspx"><i class="fas fa-book-open"></i> Lesson</a>
+<a href="progress.aspx"><i class="fas fa-chart-line"></i> Progress</a>
+            <a href="filter.aspx"><i class="fas fa-filter"></i> Filter</a>
 </div>
-               <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="LESSON_NO" DataSourceID="SqlDataSource2" ForeColor="#333333" GridLines="None" style="margin-left: 363px; margin-right: 0px; margin-top: 127px" Width="748px">
+            <div id="navbar">
+    <h1 class="navbar-title">Lesson Details</h1>
+</div>
+               <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="LESSON_NO" DataSourceID="SqlDataSource2" ForeColor="#333333" GridLines="None" style="margin-left: 363px; margin-right: 0px; margin-top: 59px" Width="748px">
                    <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                    <Columns>
                        <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
@@ -96,7 +141,7 @@
                    </UpdateParameters>
                </asp:SqlDataSource>
                <asp:SqlDataSource ID="SqlDataSource1" runat="server"></asp:SqlDataSource>
-               <asp:FormView ID="FormView1" runat="server" CellPadding="4" DataKeyNames="LESSON_NO" DataSourceID="SqlDataSource2" ForeColor="#333333" Height="128px" style="margin-left: 369px; margin-top: 28px" Width="693px">
+               <asp:FormView ID="FormView1" runat="server" CellPadding="4" DataKeyNames="LESSON_NO" DataSourceID="SqlDataSource2" ForeColor="#333333" Height="128px" style="margin-left: 363px; margin-top: 5px" Width="693px">
                    <EditItemTemplate>
                        LESSON_NO:
                        <asp:Label ID="LESSON_NOLabel1" runat="server" Text='<%# Eval("LESSON_NO") %>' />
@@ -144,5 +189,13 @@
                    <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
                </asp:FormView>
     </form>
+    <br />
+    <br />
+    <br />
+        <footer>
+    <div class="footer-content">
+        <p>&copy; 2024 - E-Learning. Created by Nischal Acharya.</p>
+    </div>
+</footer>
 </body>
 </html>
