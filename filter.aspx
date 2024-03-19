@@ -1,10 +1,10 @@
-﻿﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="filter.aspx.cs" Inherits="E_learning.filter" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="filter.aspx.cs" Inherits="E_learning.filter" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>E - Learning | Filter</title>
+    <titleE - Learning | Filter</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <style>
     body {
@@ -78,8 +78,7 @@
     .navbar-title {
         margin: 0;
         font-size: 24px;
-    }
-        footer {
+    }    footer {
     background-color: #333;
     color: #fff;
     padding: 20px 0;
@@ -126,9 +125,101 @@
             <div id="navbar">
     <h1 class="navbar-title">Filter</h1>
 </div>
-        <asp:GridView ID="GridView1" runat="server" Height="391px" style="margin-left: 329px; margin-top: 57px" Width="783px">
+        <asp:SqlDataSource ID="studentdropdown" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT DISTINCT student.STUDENT_ID, student.STUDENT_NAME FROM STUDENT student, ENROLLMENT enrollment WHERE student.STUDENT_ID = enrollment.STUDENT_ID"></asp:SqlDataSource>
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="STUDENT_ID,COURSE_ID" DataSourceID="studenttable" ForeColor="#333333" GridLines="None" style="margin-left: 263px; margin-top: 41px;" Width="1224px" Height="307px">
+            <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+            <Columns>
+                <asp:BoundField DataField="STUDENT_ID" HeaderText="STUDENT_ID" ReadOnly="True" SortExpression="STUDENT_ID" />
+                <asp:BoundField DataField="STUDENT_NAME" HeaderText="STUDENT_NAME" SortExpression="STUDENT_NAME" />
+                <asp:BoundField DataField="CONTACT" HeaderText="CONTACT" SortExpression="CONTACT" />
+                <asp:BoundField DataField="EMAIL" HeaderText="EMAIL" SortExpression="EMAIL" />
+                <asp:BoundField DataField="DOB" HeaderText="DOB" SortExpression="DOB" />
+                <asp:BoundField DataField="COUNTRY" HeaderText="COUNTRY" SortExpression="COUNTRY" />
+                <asp:BoundField DataField="COURSE_ID" HeaderText="COURSE_ID" ReadOnly="True" SortExpression="COURSE_ID" />
+                <asp:BoundField DataField="COURSE_TITTLE" HeaderText="COURSE_TITTLE" SortExpression="COURSE_TITTLE" />
+                <asp:BoundField DataField="ENROLL_DATE" HeaderText="ENROLL_DATE" SortExpression="ENROLL_DATE" />
+            </Columns>
+            <EditRowStyle BackColor="#999999" />
+            <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+            <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+            <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+            <SortedAscendingCellStyle BackColor="#E9E7E2" />
+            <SortedAscendingHeaderStyle BackColor="#506C8C" />
+            <SortedDescendingCellStyle BackColor="#FFFDF8" />
+            <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
         </asp:GridView>
+        <asp:SqlDataSource ID="studenttable" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT 
+    s.STUDENT_ID, 
+    s.STUDENT_NAME, 
+    s.CONTACT, 
+    s.EMAIL, 
+    s.DOB, 
+    s.COUNTRY, 
+    c.COURSE_ID, 
+    c.COURSE_TITTLE, 
+    e.ENROLL_DATE 
+FROM 
+    STUDENT s 
+JOIN 
+    ENROLLMENT e ON s.STUDENT_ID = e.STUDENT_ID 
+JOIN 
+    COURSE c ON e.COURSE_ID = c.COURSE_ID 
+WHERE 
+    s.STUDENT_ID = :STUDENT_ID
+">
+            <SelectParameters>
+    <asp:ControlParameter ControlID="DropDownList1" Name="STUDENT_ID" PropertyName="SelectedValue" Type="Decimal" />
+</SelectParameters>
+        </asp:SqlDataSource>
+        <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="studentdropdown" DataTextField="STUDENT_NAME" DataValueField="STUDENT_ID" Height="16px" style="margin-left: 261px; margin-top: 0px" Width="99px" AutoPostBack="True">
+        </asp:DropDownList>
+        <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="COURSE_ID" DataSourceID="orderbytable" ForeColor="#333333" GridLines="None" Height="257px" style="margin-left: 262px; margin-top: 29px" Width="896px">
+            <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+            <Columns>
+                <asp:BoundField DataField="COURSE_ID" HeaderText="COURSE_ID" ReadOnly="True" SortExpression="COURSE_ID" />
+                <asp:BoundField DataField="COURSE_TITTLE" HeaderText="COURSE_TITTLE" SortExpression="COURSE_TITTLE" />
+                <asp:BoundField DataField="ENROLLMENT_COUNT" HeaderText="ENROLLMENT_COUNT" SortExpression="ENROLLMENT_COUNT" />
+            </Columns>
+            <EditRowStyle BackColor="#999999" />
+            <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+            <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+            <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+            <SortedAscendingCellStyle BackColor="#E9E7E2" />
+            <SortedAscendingHeaderStyle BackColor="#506C8C" />
+            <SortedDescendingCellStyle BackColor="#FFFDF8" />
+            <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+        </asp:GridView>
+        <asp:SqlDataSource ID="orderbytable" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT c.course_id, 
+       c.course_tittle, 
+       COUNT(e.student_id) AS enrollment_count
+FROM course c
+JOIN enrollment e ON c.course_id = e.course_id
+WHERE TO_CHAR(e.enroll_date, 'YYYY-MM') = :SelectedMonth
+GROUP BY c.course_id, c.course_tittle
+ORDER BY COUNT(e.student_id) DESC
+FETCH FIRST 3 ROWS ONLY">
+            <SelectParameters>
+        <asp:ControlParameter ControlID="DropDownList2" Name="SelectedMonth" PropertyName="SelectedValue" Type="String" />
+    </SelectParameters>
+        </asp:SqlDataSource>
+        <asp:SqlDataSource ID="coursetable" runat="server"></asp:SqlDataSource>
+        <asp:DropDownList ID="DropDownList2" runat="server" AutoPostBack="True" DataSourceID="orderby" DataTextField="MONTH_YEAR" DataValueField="MONTH_YEAR" Height="16px" style="margin-left: 267px; margin-top: 0px" Width="109px">
+        </asp:DropDownList>
+        <asp:SqlDataSource ID="orderby" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT DISTINCT TO_CHAR(enroll_date, 'YYYY-MM') AS month_year 
+FROM enrollment
+ORDER BY month_year DESC
+"></asp:SqlDataSource>
     </form>
-            
+    <br />
+    <br />
+            <footer>
+    <div class="footer-content">
+        <p>&copy; 2024 - E-Learning. Created by Nischal Acharya.</p>
+    </div>
+</footer>
 </body>
 </html>
