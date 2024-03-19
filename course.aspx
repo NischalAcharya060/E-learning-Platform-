@@ -88,6 +88,40 @@
 .footer-content a:hover {
     text-decoration: underline;
 }
+.btn {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        text-decoration: none;
+        border: 2px solid transparent;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .btn2 {
+        color: #fff;
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+    .btn2:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+    }
+
+    .btn3 {
+        color: #fff;
+        background-color: #dc3545;
+        border-color: #dc3545;
+    }
+
+    .btn3:hover {
+        background-color: #c82333;
+        border-color: #bd2130;
+    }
+
 </style>
 </head>
 <body>
@@ -138,7 +172,7 @@
                         <asp:Parameter Name="COURSE_ID" Type="Decimal" />
                     </UpdateParameters>
                 </asp:SqlDataSource>
-                <asp:FormView ID="FormView1" runat="server" CellPadding="4" DataKeyNames="COURSE_ID" DataSourceID="SqlDataSource1" ForeColor="#333333" Height="99px" style="margin-left: 408px; margin-top: 9px" Width="556px">
+                <asp:FormView ID="FormView1" runat="server" CellPadding="4" DataKeyNames="COURSE_ID" DataSourceID="SqlDataSource1" ForeColor="#333333" Height="99px" style="margin-left: 408px; margin-top: 9px" Width="556px" AllowPaging="True">
                     <EditItemTemplate>
                         COURSE_ID:
                         <asp:Label ID="COURSE_IDLabel1" runat="server" Text='<%# Eval("COURSE_ID") %>' />
@@ -146,8 +180,8 @@
                         COURSE_TITTLE:
                         <asp:TextBox ID="COURSE_TITTLETextBox" runat="server" Text='<%# Bind("COURSE_TITTLE") %>' />
                         <br />
-                        <asp:LinkButton ID="UpdateButton" runat="server" CausesValidation="True" CommandName="Update" Text="Update" />
-                        &nbsp;<asp:LinkButton ID="UpdateCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
+                        <asp:LinkButton ID="UpdateButton" runat="server" CausesValidation="True" CommandName="Update" Text="Update" CssClass="btn btn2"/>
+                        &nbsp;<asp:LinkButton ID="UpdateCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" CssClass="btn btn3"/>
                     </EditItemTemplate>
                     <EditRowStyle BackColor="#999999" />
                     <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
@@ -159,8 +193,8 @@
                         COURSE_TITTLE:
                         <asp:TextBox ID="COURSE_TITTLETextBox" runat="server" Text='<%# Bind("COURSE_TITTLE") %>' />
                         <br />
-                        <asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" CommandName="Insert" Text="Insert" />
-                        &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
+                        <asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" CommandName="Insert" Text="Insert" CssClass="btn btn2"/>
+                        &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" CssClass="btn btn3"/>
                     </InsertItemTemplate>
                     <ItemTemplate>
                         COURSE_ID:
@@ -169,9 +203,9 @@
                         COURSE_TITTLE:
                         <asp:Label ID="COURSE_TITTLELabel" runat="server" Text='<%# Bind("COURSE_TITTLE") %>' />
                         <br />
-                        <asp:LinkButton ID="EditButton" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit" />
-                        &nbsp;<asp:LinkButton ID="DeleteButton" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" />
-                        &nbsp;<asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" Text="New" />
+                        <asp:LinkButton ID="EditButton" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit" CssClass="btn btn2"/>
+                        &nbsp;<asp:LinkButton ID="DeleteButton" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" CssClass="btn btn3"/>
+                        &nbsp;<asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" Text="New" CssClass="btn btn2"/>
                     </ItemTemplate>
                     <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
                     <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />

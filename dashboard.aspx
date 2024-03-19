@@ -79,6 +79,34 @@
         margin: 0;
         font-size: 24px;
     }
+            /* Style the footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+/* Style the footer content */
+.footer-content {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+/* Style the copyright text */
+.footer-content p {
+    margin: 0;
+}
+
+/* Style the footer links (if any) */
+.footer-content a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-content a:hover {
+    text-decoration: underline;
+}
 </style>
 </head>
 <body>
@@ -97,22 +125,50 @@
 
         </div>
             <div id="navbar">
-    <h1 class="navbar-title">Dashboard</h1>
+    <h1 class="navbar-title"> Dashboard</h1>
 </div>
         <div class="container">
             <div class="card">
-                <h2>Total Students</h2>
-                <p>
+                <h2>Total Student</h2>
+                <span>
                     15
-                </p>
+                </span>
             </div>
             <div class="card">
                 <h2>Total Course</h2>
-                <p>
-                    15
-                </p>
+                <span>
+                15
+                </span>
             </div>
         </div>
     </form>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+<br />
+<br />
+<br />
+    <br />
+<br />
+<br />
+<br />
+    <br />
+<br />
+<br />
+<br />
+    <br />
+<br />
+<br />
+<br />
+    <br />
+<br />
+<br />
+        <footer>
+    <div class="footer-content">
+        <p>&copy; 2024 - E-Learning. Created by Nischal Acharya.</p>
+    </div>
+</footer>
 </body>
 </html>
