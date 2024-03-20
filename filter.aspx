@@ -105,6 +105,10 @@
 .footer-content a:hover {
     text-decoration: underline;
 }
+.heading{
+        text-align: center;
+
+}
 </style>
 </head>
 <body>
@@ -125,6 +129,7 @@
             <div id="navbar">
     <h1 class="navbar-title">Filter</h1>
 </div>
+<h1 class="heading">Student Enrollment</h1>
         <asp:SqlDataSource ID="studentdropdown" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT DISTINCT student.STUDENT_ID, student.STUDENT_NAME FROM STUDENT student, ENROLLMENT enrollment WHERE student.STUDENT_ID = enrollment.STUDENT_ID"></asp:SqlDataSource>
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="STUDENT_ID,COURSE_ID" DataSourceID="studenttable" ForeColor="#333333" GridLines="None" style="margin-left: 263px; margin-top: 41px;" Width="1224px" Height="307px">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
@@ -173,9 +178,10 @@ WHERE
     <asp:ControlParameter ControlID="DropDownList1" Name="STUDENT_ID" PropertyName="SelectedValue" Type="Decimal" />
 </SelectParameters>
         </asp:SqlDataSource>
-        <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="studentdropdown" DataTextField="STUDENT_NAME" DataValueField="STUDENT_ID" Height="16px" style="margin-left: 261px; margin-top: 0px" Width="99px" AutoPostBack="True">
+        <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="studentdropdown" DataTextField="STUDENT_NAME" DataValueField="STUDENT_ID" Height="16px" style="margin-left: 261px; margin-top: 0px" Width="121px" AutoPostBack="True">
         </asp:DropDownList>
-        <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="COURSE_ID" DataSourceID="orderbytable" ForeColor="#333333" GridLines="None" Height="257px" style="margin-left: 262px; margin-top: 29px" Width="896px">
+        <h1 class="heading">Best E - Learning Coureses</h1>
+        <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="COURSE_ID" DataSourceID="orderbytable" ForeColor="#333333" GridLines="None" Height="257px" style="margin-left: 262px; margin-top: 11px" Width="896px">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             <Columns>
                 <asp:BoundField DataField="COURSE_ID" HeaderText="COURSE_ID" ReadOnly="True" SortExpression="COURSE_ID" />
@@ -213,6 +219,59 @@ FETCH FIRST 3 ROWS ONLY">
 FROM enrollment
 ORDER BY month_year DESC
 "></asp:SqlDataSource>
+        <h1 class="heading">Instructed Course</h1>
+
+        <asp:GridView ID="GridView3" runat="server" AllowPaging="True" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="COURSE_ID,INSTRUCTOR_ID" DataSourceID="SqlDataSource2" ForeColor="#333333" GridLines="None" Height="450px" style="margin-left: 267px; margin-top: 15px; margin-right: 0px;" Width="1066px">
+            <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+            <Columns>
+                <asp:BoundField DataField="COURSE_ID" HeaderText="COURSE_ID" ReadOnly="True" SortExpression="COURSE_ID" />
+                <asp:BoundField DataField="COURSE_TITTLE" HeaderText="COURSE_TITTLE" SortExpression="COURSE_TITTLE" />
+                <asp:BoundField DataField="INSTRUCTOR_ID" HeaderText="INSTRUCTOR_ID" ReadOnly="True" SortExpression="INSTRUCTOR_ID" />
+                <asp:BoundField DataField="INSTRUCTOR_NAME" HeaderText="INSTRUCTOR_NAME" SortExpression="INSTRUCTOR_NAME" />
+            </Columns>
+            <EditRowStyle BackColor="#999999" />
+            <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+            <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+            <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+            <SortedAscendingCellStyle BackColor="#E9E7E2" />
+            <SortedAscendingHeaderStyle BackColor="#506C8C" />
+            <SortedDescendingCellStyle BackColor="#FFFDF8" />
+            <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+        </asp:GridView>
+        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT
+    c.COURSE_ID,
+    c.COURSE_TITTLE,
+    i.INSTRUCTOR_ID,
+    i.INSTRUCTOR_NAME  
+FROM
+    COURSE c
+JOIN
+    INSTRUCTOR_COURSE sci ON c.COURSE_ID = sci.COURSE_ID
+JOIN
+    INSTRUCTOR i ON sci.INSTRUCTOR_ID = i.INSTRUCTOR_ID
+WHERE
+    c.COURSE_ID = :Course 
+AND
+    i.INSTRUCTOR_ID IN (
+        SELECT
+            INSTRUCTOR_ID
+        FROM
+            INSTRUCTOR_COURSE
+        GROUP BY
+            INSTRUCTOR_ID
+        HAVING
+            COUNT(DISTINCT COURSE_ID) &gt;= 2
+    )
+">
+            <SelectParameters>
+                <asp:ControlParameter ControlID="DropDownList3" Name="Course" PropertyName="SelectedValue" />
+            </SelectParameters>
+        </asp:SqlDataSource>
+        <asp:DropDownList ID="DropDownList3" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="COURSE_TITTLE" DataValueField="COURSE_ID" style="margin-left: 270px" Width="149px">
+        </asp:DropDownList>
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM &quot;COURSE&quot;"></asp:SqlDataSource>
     </form>
     <br />
     <br />

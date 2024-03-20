@@ -213,7 +213,6 @@
     </form>
     <br />
     <br />
-    <br />
         <footer>
     <div class="footer-content">
         <p>&copy; 2024 - E-Learning. Created by Nischal Acharya.</p>

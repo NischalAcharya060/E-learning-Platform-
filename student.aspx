@@ -291,9 +291,7 @@ footer {
                     <asp:Parameter Name="STUDENT_ID" Type="Decimal" />
                 </UpdateParameters>
             </asp:SqlDataSource>
-        <br /><br /><br />
-        <br />
-        <br />
+        <br /><br />
         <footer>
         <div class="footer-content">
             <p>&copy; 2024 - E-Learning. Created by Nischal Acharya.</p>
